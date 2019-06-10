@@ -8,4 +8,16 @@ find_package(pcg REQUIRED)
 find_package(ms-gsl REQUIRED)
 
 add_executable(pcg_test ${PROJECT_SOURCE_DIR}/main.cpp)
-target_link_libraries(pcg_test PRIVATE pcg::pcg ms-gsl::gsl)
+
+find_path(PCG_INCLUDE_DIR pcg_random.hpp
+          PATHS ${_VCPKG_ROOT_DIR}/installed/${VCPKG_TARGET_TRIPLET}/include
+          NO_DEFAULT_PATH)
+
+add_library(pcg::pcg INTERFACE IMPORTED)
+set_target_properties(pcg::pcg
+                      PROPERTIES INTERFACE_INCLUDE_DIRECTORIES
+                                 "${PCG_INCLUDE_DIR}"
+                                 INTERFACE_COMPILE_DEFINITIONS
+                                 "PCG_LITTLE_ENDIAN=1")
+
+target_link_libraries(pcg_test PRIVATE pcg::pcg)
