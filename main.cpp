@@ -13,7 +13,7 @@ int main()
   pcg_extras::seed_seq_from<std::random_device> seed_source;
 
   // Make a random number engine
-  pcg32 rng(seed_source);
+  pcg64 rng(seed_source);
 
   // Choose a random mean between 1 and 6
   std::uniform_int_distribution<int> uniform_dist(1, 6);
