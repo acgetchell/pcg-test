@@ -3,9 +3,9 @@ project(pcg_test)
 
 set(CMAKE_CXX_STANDARD 17)
 
-find_package(pcg REQUIRED)
+#find_package(pcg REQUIRED)
 
-find_package(ms-gsl REQUIRED)
+#find_package(ms-gsl REQUIRED)
 
 add_executable(pcg_test ${PROJECT_SOURCE_DIR}/main.cpp)
 
